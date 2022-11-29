@@ -11,16 +11,15 @@ import (
 
 // Insert a EventSchedule into mongoDb database
 func InsertEventSchedule(ctx *gin.Context) {
+
 	var newEventSchedule models.EventSchedule
 	newEventSchedule.ID = primitive.NewObjectID()
-
 	// Call BindJSON to bind the received JSON to
 	if err := ctx.BindJSON(&newEventSchedule); err != nil {
 		ctx.JSON(http.StatusBadRequest, responses.EventScheduleResponse{Status: http.StatusBadRequest, Message: "Wrong event data"})
 		return
 	}
 
-	// Add the new album to the slice.
 	var result = models.InsertEventSchedule(ctx, newEventSchedule)
 	if !result.Status {
 		ctx.JSON(http.StatusBadRequest, responses.EventScheduleResponse{Status: http.StatusBadRequest, Message: "Error inserting event"})
