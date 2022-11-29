@@ -17,6 +17,7 @@ type EventSchedule struct {
 	Name        string                 `json:"name" binding:"required"`
 	Description string                 `json:"description" binding:"required"`
 	Origin      string                 `json:"origin" binding:"required"`
+	Type        string                 `json:"type" binding:"required"`
 	Date        primitive.DateTime     `primitive:"date" binding:"required"`
 	Data        map[string]interface{} `bson:"data"  binding:"required"`
 }
