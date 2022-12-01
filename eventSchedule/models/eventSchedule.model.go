@@ -51,7 +51,7 @@ func InsertEventSchedule(c *gin.Context, newEventSchedule EventSchedule) dbInser
 func LocalGetEventSchedules() (eventSchedules []EventSchedule, err error) {
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
 	results, err := eventScheduleCollection.Find(ctx, bson.M{"date": bson.M{
-		"$lte": primitive.NewDateTimeFromTime(time.Now().AddDate(-1, 0, 0)),
+		"$lte": primitive.NewDateTimeFromTime(time.Now()),
 	}})
 
 	if err != nil {
